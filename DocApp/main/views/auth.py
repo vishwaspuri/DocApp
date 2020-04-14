@@ -7,6 +7,7 @@ from rest_framework.response import Response
 
 from main.auth_helpers import get_jwt_with_user
 
+
 @api_view(['POST'])
 def register(request):
     try:
