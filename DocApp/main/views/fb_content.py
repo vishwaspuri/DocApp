@@ -7,8 +7,8 @@ from django.core.exceptions import ImproperlyConfigured
 
 from firebase_admin import initialize_app, firestore, credentials
 
-
 # For this to work, make sure that environment variable GOOGLE_APPLICATION_CREDENTIALS is set properly. 
+
 fb_app = initialize_app(name='covidhack')
 store = firestore.client(app=fb_app)
 
@@ -28,3 +28,40 @@ def get_highriskplaces(request):
         }
         payload.append(data_dict)
     return Response(payload, status=status.HTTP_200_OK)
+
+@api_view(["GET"])
+def get_all_profile(request):
+    profiles = store.collection(u"Profile").get()
+    payload = []
+    for profile in profiles:
+        data = profile.to_dict()
+        payload.append(data)
+
+    
+    return Response(payload, status=status.HTTP_200_OK)
+
+@api_view(["GET"])
+def get_profile(request):
+    try:
+        user_id = request.data['user_id']
+    except KeyError:
+        return Response({'error':'No user_id is provided.'},status=status.HTTP_400_BAD_REQUEST)
+
+    profile = store.collection(u"Profile").document(user_id).get()
+
+    if profile is None:
+        return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
+
+    timestamp_loc = "Profile/" + user_id +"/TimeStamps" 
+    timestamps = store.collection(timestamp_loc).get()
+
+    timestamps_list = []
+
+    for timestamp in timestamps:
+        timestamps_list.append(timestamp.to_dict())
+    
+    profile_dict = profile.to_dict()
+
+    profile_dict.update({"timestamps":timestamps_list})
+    
+    return Response(profile_dict,status=status.HTTP_200_OK)
