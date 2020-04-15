@@ -41,13 +41,8 @@ def get_all_profile(request):
     return Response(payload, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
-def get_profile(request):
-    try:
-        user_id = request.data['user_id']
-    except KeyError:
-        return Response({'error':'No user_id is provided.'},status=status.HTTP_400_BAD_REQUEST)
-
-    profile = store.collection(u"Profile").document(user_id).get()
+def get_profile(request, id):
+    profile = store.collection(u"Profile").document(id).get()
 
     if profile is None:
         return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
@@ -65,3 +60,15 @@ def get_profile(request):
     profile_dict.update({"timestamps":timestamps_list})
     
     return Response(profile_dict,status=status.HTTP_200_OK)
+
+@api_view(["PUT"])
+def update_status(request, id):
+    profile = store.collection(u"Profile").document(id)
+
+    if profile.get() is None:
+        return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
+        
+    isPos = request.data["isPos"]
+    profile.update({"isPos": isPos})
+    return Response(profile.get().to_dict(), status=status.HTTP_200_OK)
+
