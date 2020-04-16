@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
 from firebase_admin import initialize_app, firestore, credentials
-
+from main.encrypt_decrypt import getdata
 # For this to work, make sure that environment variable GOOGLE_APPLICATION_CREDENTIALS is set properly. 
 
 fb_app = initialize_app(name='covidhack')
@@ -46,7 +46,7 @@ def get_profile(request, id):
 
     if profile is None:
         return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
-
+    '''
     timestamp_loc = "Profile/" + id +"/TimeStamps" 
     timestamps = store.collection(timestamp_loc).get()
 
@@ -54,12 +54,18 @@ def get_profile(request, id):
 
     for timestamp in timestamps:
         timestamps_list.append(timestamp.to_dict())
-    
-    profile_dict = profile.to_dict()
+    '''
+    try:
+        my_data=getdata(phnumber=id)
+        devices_connected=my_data["devices"]
+        timestamps_list=my_data["location"]
+        profile_dict = profile.to_dict()
+        profile_dict.update({"timestamps":timestamps_list, "devices_connected":devices_connected})
+        return Response(profile_dict,status=status.HTTP_200_OK)
 
-    profile_dict.update({"timestamps":timestamps_list})
-    
-    return Response(profile_dict,status=status.HTTP_200_OK)
+    except:
+        profile_dict = profile.to_dict()
+        return Response(profile_dict,status=status.HTTP_200_OK)
 
 @api_view(["PUT"])
 def update_status(request, id):
