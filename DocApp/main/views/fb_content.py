@@ -47,7 +47,7 @@ def get_profile(request, id):
     if profile is None:
         return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
 
-    timestamp_loc = "Profile/" + user_id +"/TimeStamps" 
+    timestamp_loc = "Profile/" + id +"/TimeStamps" 
     timestamps = store.collection(timestamp_loc).get()
 
     timestamps_list = []
