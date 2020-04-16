@@ -3,3 +3,6 @@
 .vim
 .DS_Store
 venv/
+.idea
+creds.json
+env/
