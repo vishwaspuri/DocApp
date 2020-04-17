@@ -99,7 +99,7 @@ def getdata(phnumber):
 
     return ({"devices": blth2, "location": loc2})
 #------------------
-#fin
+#fin---------------
 #------------------
 
 @api_view(["GET"])
@@ -146,10 +146,14 @@ def get_profile(request, id):
     '''
     try:
         my_data=getdata(phnumber=id)
-        devices_connected=my_data["devices"]
+        devices=my_data["devices"]
+        connectedDeviceData = []
+        for device in devices:
+            device_profile = db.collection(u"Profile").document(device).get()
+            connectedDeviceData.append(device_profile.to_dict())
         timestamps_list=my_data["location"]
         profile_dict = profile.to_dict()
-        profile_dict.update({"timestamps":timestamps_list, "devices_connected":devices_connected})
+        profile_dict.update({"timestamps":timestamps_list, "devices_connected":connectedDeviceData})
         return Response(profile_dict,status=status.HTTP_200_OK)
 
     except:
