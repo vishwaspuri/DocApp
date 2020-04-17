@@ -153,11 +153,12 @@ def get_profile(request, id):
             connectedDeviceData.append(device_profile.to_dict())
         timestamps_list=my_data["location"]
         profile_dict = profile.to_dict()
-        profile_dict.update({"timestamps":timestamps_list, "devices_connected":connectedDeviceData})
+        profile_dict.update({'flag': True,"timestamps":timestamps_list, "devices_connected":connectedDeviceData })
         return Response(profile_dict,status=status.HTTP_200_OK)
 
     except:
         profile_dict = profile.to_dict()
+        profile_dict.update({'flag':False})
         return Response(profile_dict,status=status.HTTP_200_OK)
 
 @api_view(["PUT"])
