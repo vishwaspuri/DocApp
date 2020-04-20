@@ -38,11 +38,12 @@ def register(request):
 @api_view(['POST'])
 def login(request):
     try:
-        username = request.data['username']
+        email = request.data['email']
         password = request.data['password']
     except KeyError:
         return Response({'error':'Either username or password is not provided'},status=status.HTTP_403_FORBIDDEN)
 
+    username = User.objects.get(email=email).username
     user = authenticate(request,username=username,password=password)
 
     if user:
