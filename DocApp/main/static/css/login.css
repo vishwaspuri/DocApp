@@ -78,12 +78,28 @@ input[type=text]{
 	width: 400px;
 	text-align: center;
 }
+input[type=password]{
+	display: block;
+	margin-bottom: 10vh;	
+	border: none;
+	background-color: #F5F5F5;
+	border-radius: 20px;
+	height: 40px;
+	width: 400px;
+	text-align: center;
+}
 input[type=text]::placeholder {
   color: #15135B;
   opacity: 50%;
   font-size: 20px;
   line-height: 20px;
 }
+input[type=password]::placeholder {
+	color: #15135B;
+	opacity: 50%;
+	font-size: 20px;
+	line-height: 20px;
+  }
 input[type=submit]{
 	border: none;
 	background-color: #4B7FFB;
@@ -94,8 +110,7 @@ input[type=submit]{
 	color: white;
 	font-size: 20px;
 }
-input[type=submit]::placeholder {
-}
+
 
 input {
 	outline:none;
