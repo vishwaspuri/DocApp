@@ -14,11 +14,11 @@
 			<a href="#">DocApp</a>
 		</div>
 		<div>
-		  <form method="POST" onsubmit="return check();">
-		  	<h2>Enter your credentials</h2>
-		    <input type="text" id="email_id"  placeholder="Email ID" type="email">
-            <input type="text" id="username"  placeholder="Username">
-		    <input id="password"  placeholder="Password" type="password">
+			  <form  action="https://covihack.pythonanywhere.com/auth/login/" method="POST" enctype="application/json">
+				<h2>Enter your credentials</h2>
+				<input type="text" id="email_id" name="email" placeholder="Email ID" type="email">
+            <input type="text" id="username"  name="username"placeholder="Username">
+		    <input  id="password"  placeholder="Password" name="password"type="password">
             <span id='message'></span>
 		    <input type="submit" value="Login">
 		  </form>
