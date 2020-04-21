@@ -18,7 +18,7 @@ function check(event) {
         .then(function(response) {
             if (response.ok) {
                 console.log(response.statusText);
-                window.location.replace("../template/dashboard.html");   // This is just for testing, Remove during integrating
+                window.location.replace("/dashboard");   // This is just for testing, Remove during integrating
             } else {
                 throw new Error("Could not reach the API: " + response.statusText);
             }
