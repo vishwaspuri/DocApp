@@ -1,11 +1,11 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
 from main.auth_helpers import get_jwt_with_user
+
 
 
 @api_view(['POST'])
@@ -51,3 +51,8 @@ def login(request):
         return Response({'token':token},status=status.HTTP_200_OK)
     else:
         return Response({'error':'Invalid Login details supplied.'},status=status.HTTP_403_FORBIDDEN)
+
+
+
+
+
