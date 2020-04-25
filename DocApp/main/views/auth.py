@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
@@ -6,7 +5,6 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from main.auth_helpers import get_jwt_with_user
-from django.views.generic import TemplateView
 
 
 
@@ -56,5 +54,5 @@ def login(request):
 
 
 
-class LoginPage(TemplateView):
-    template_name = 'login.html'
+
+

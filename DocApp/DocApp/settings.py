@@ -134,5 +134,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 JWT_AUTH = {
     "JWT_VERIFY_EXPIRATION": False,
 }
-
+LOGIN_REDIRECT_URL = '/dashboard/'
 

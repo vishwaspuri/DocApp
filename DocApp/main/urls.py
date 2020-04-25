@@ -1,10 +1,16 @@
 from django.urls import path
 from main.views import auth, fb_content,views
+from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
     path('auth/login/', auth.login, name='login'),
     path('auth/register/', auth.register, name='register'),
     path('', views.HomePage.as_view(), name='home'),
-    path('login/',auth.LoginPage.as_view(), name='login'),
+    path('login/',LoginView.as_view(
+        template_name='login.html',
+    ), name='login'),
+    path('logout/', LogoutView.as_view(
+        next_page='/'
+    ),name='logout'),
     path('dashboard/',views.Dashboard.as_view(), name='dashboard'),
     path('general_public/',views.ListMembersView.as_view(), name='general_public'),
     path('hotspots/',views.HotspotView.as_view(), name='hotspots'),

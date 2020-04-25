@@ -25,3 +25,5 @@ class MapsView(LoginRequiredMixin,TemplateView):
     model=Profile
     template_name = 'maps.html'
 
+
+
