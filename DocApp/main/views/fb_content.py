@@ -161,7 +161,7 @@ def get_profile(request, id):
         profile_dict.update({'flag':False})
         return Response(profile_dict,status=status.HTTP_200_OK)
 
-@api_view(["PUT"])
+@api_view(["PUT", "POST"])
 def update_status(request, id):
     profile = store.collection(u"Profile").document(id)
 
