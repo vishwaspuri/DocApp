@@ -27,6 +27,17 @@ function getTrack(phno){
             $(".contacted").remove();
             $("#map-canvas-dashboard").remove();
             $("#map_zone").append('<div id="map-canvas-dashboard"></div>');
+            $("#marker").removeClass("disable_button");
+            $("#marker").text("Mark as infected");
+            $("#marker").click(sendMarker);
+
+            // =================================turning the marked as infected button off==================
+
+            if(x.isPos == true){
+              $("#marker").addClass("disable_button");
+              $("#marker").text("Infected");
+              $("#marker").unbind();
+            }
 
             // =================================filling the data for the box===================================================
 
@@ -89,7 +100,19 @@ function getTrack(phno){
     return data;
 }
 
-
+function sendMarker(){
+  var mobile = document.getElementById("search_input").value;
+  // console.log("I'm in")
+    var data = $.ajax( {
+        type: 'PUT',     
+        url: 'https://covihack.pythonanywhere.com/api/profiles/'+ mobile +'/',
+        data: {},
+        success: function(data) {
+          // console.log("worked");
+        }
+    });
+    return data;
+}
         
 
 
