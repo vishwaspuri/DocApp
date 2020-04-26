@@ -169,11 +169,12 @@ def update_status(request, id):
     if profile.get() is None:
         return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
     try:
-        getdata(id, True);
+        getdata(id, True)
+        profile.update({"isPos": True, "Probability": 1})
+        return Response(profile.get().to_dict(), status=status.HTTP_200_OK)
     except:
-        print('probability not upgraded')
-    profile.update({"isPos": True, "Probability":1})
-    return Response(profile.get().to_dict(), status=status.HTTP_200_OK)
+        return Response({'error':'Please activate private key'},status=status.HTTP_403_FORBIDDEN)
+
 
 
 @api_view(["GET"])
