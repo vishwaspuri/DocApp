@@ -43,16 +43,17 @@ function getTrack(phno){
 
             // =================================filling the data for the box===================================================
 
-            $("#name_tag").text("Name: "+x.Name);
-            $("#state_tag").text("State: "+x.Home);
+            // $("#name_tag").text("Name: "+x.Name);
+            // $("#state_tag").text("State: "+x.Home);
             $("#mobile_tag").text("Mobile Number: "+x.Mobile);
-            $("#email_tag").text("Email Id: "+x.Email);
-            $("#dob_tag").text("DOB: "+x.DateOfBirth);
+            $("#id_tag").text("ID: "+x.ID);
+            // $("#email_tag").text("Email Id: "+x.Email);
+            // $("#dob_tag").text("DOB: "+x.DateOfBirth);
             $("#probability_tag").text("Probability: "+x.Probability);
 
             // console.log(x.devices_connected);
             for(var i = 0; i < x.devices_connected.length;i++){
-              $("#device_list").append('<li>Came in proximity to '+x.devices_connected[i].Name+',<br> Mobile Number: '+x.devices_connected[0].Mobile+' </li>');
+              $("#device_list").append('<li>Came in proximity to '+x.devices_connected[i].ID+' </li>');
             }
             //temporary
             // $("#device_list").append('<li class="contacted">Came in proximity to '+ x.devices_connected[0].Name +', Mobile Number: '+x.devices_connected[0].Mobile+' </li>');
