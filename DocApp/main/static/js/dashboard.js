@@ -30,7 +30,9 @@ function getTrack(phno){
             $("#marker").removeClass("disable_button");
             $("#marker").text("Mark as infected");
             $("#marker").click(sendMarker);
-
+            $("#marker").remove();
+            $(".mark_here").append('<button type="button" id="marker">Mark as infected</button>');
+            
             // =================================turning the marked as infected button off==================
 
             if(x.isPos == true){
@@ -104,7 +106,7 @@ function sendMarker(){
   var mobile = document.getElementById("search_input").value;
   // console.log("I'm in")
     var data = $.ajax( {
-        type: 'PUT',     
+        type: 'POST',     
         url: 'https://covihack.pythonanywhere.com/api/profiles/'+ mobile +'/',
         data: {},
         success: function(data) {
