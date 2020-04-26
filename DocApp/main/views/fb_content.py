@@ -59,8 +59,8 @@ def getdata(phnumber, update_probability=False):
             else:
                 loc[loci] = {"time": 2, "last": time}
 
-        if 'BluetoothName' in bdic:
-            for bl in bdic['BluetoothName']:
+        if 'MacAddress' in bdic:
+            for bl in bdic['MacAddress']:
                 bl1 = rev_cipher(bl)
                 if bl1 in blth:
                     blth[bl1]["time"] += 2
@@ -168,9 +168,13 @@ def update_status(request, id):
 
     if profile.get() is None:
         return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
-    getdata(id, True);
-    profile.update({"isPos": True})
-    return Response(profile.get().to_dict(), status=status.HTTP_200_OK)
+    try:
+        getdata(id, True)
+        profile.update({"isPos": True, "Probability": 1})
+        return Response(profile.get().to_dict(), status=status.HTTP_200_OK)
+    except:
+        return Response({'error':'Please activate private key'},status=status.HTTP_403_FORBIDDEN)
+
 
 
 @api_view(["GET"])
