@@ -27,12 +27,12 @@ function getTrack(phno){
             $(".contacted").remove();
             $("#map-canvas-dashboard").remove();
             $("#map_zone").append('<div id="map-canvas-dashboard"></div>');
+            $("#marker").remove();
+            $(".mark_here").append('<button type="button" id="marker">Mark as infected</button>');
             $("#marker").removeClass("disable_button");
             $("#marker").text("Mark as infected");
             $("#marker").click(sendMarker);
-            $("#marker").remove();
-            $(".mark_here").append('<button type="button" id="marker">Mark as infected</button>');
-            
+
             // =================================turning the marked as infected button off==================
 
             if(x.isPos == true){
@@ -104,13 +104,14 @@ function getTrack(phno){
 
 function sendMarker(){
   var mobile = document.getElementById("search_input").value;
-  // console.log("I'm in")
+  console.log("I'm in");
     var data = $.ajax( {
         type: 'POST',     
-        url: 'https://covihack.pythonanywhere.com/api/profiles/'+ mobile +'/',
-        data: {},
+        url: 'https://covihack.pythonanywhere.com/api/update_status/'+ mobile +'/',
+        data: {ispos:true},
         success: function(data) {
-          // console.log("worked");
+          console.log("worked");
+          console.log(data);
         }
     });
     return data;
