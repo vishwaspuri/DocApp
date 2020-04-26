@@ -59,8 +59,8 @@ def getdata(phnumber, update_probability=False):
             else:
                 loc[loci] = {"time": 2, "last": time}
 
-        if 'BluetoothName' in bdic:
-            for bl in bdic['BluetoothName']:
+        if 'MacAddress' in bdic:
+            for bl in bdic['MacAddress']:
                 bl1 = rev_cipher(bl)
                 if bl1 in blth:
                     blth[bl1]["time"] += 2
