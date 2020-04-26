@@ -104,14 +104,28 @@ function getTrack(phno){
 
 function sendMarker(){
   var mobile = document.getElementById("search_input").value;
-  console.log("I'm in");
+  // console.log("I'm in");
     var data = $.ajax( {
         type: 'POST',     
         url: 'https://covihack.pythonanywhere.com/api/update_status/'+ mobile +'/',
         data: {isPos:true},
         success: function(data) {
           console.log("worked");
-          console.log(data);
+          // console.log(data);
+          var x = data;
+          $("#marker").remove();
+            $(".mark_here").append('<button type="button" id="marker">Mark as infected</button>');
+            $("#marker").removeClass("disable_button");
+            $("#marker").text("Mark as infected");
+            $("#marker").click(sendMarker);
+
+            // =================================turning the marked as infected button off==================
+
+            if(x.isPos == true || x.isPos=="true"){
+              $("#marker").addClass("disable_button");
+              $("#marker").text("Infected");
+              $("#marker").unbind();
+            }
         }
     });
     return data;

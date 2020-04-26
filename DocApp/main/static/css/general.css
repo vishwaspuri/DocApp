@@ -85,6 +85,7 @@ button[type=button] {
     position: relative;
     left: 25vw;
     top: -15vh;
+    outline: none;
 }
 /*side bar and notification zone*/
 .heading_bar{
