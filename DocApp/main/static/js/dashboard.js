@@ -127,7 +127,11 @@ function sendMarker(){
               $("#marker").text("Infected");
               $("#marker").unbind();
             }
-        }
+        },
+        statusCode: {
+        403: function() {
+          alert("Permission Denied");
+        }}
     });
     return data;
 }
