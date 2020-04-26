@@ -98,13 +98,13 @@ def getdata(phnumber, update_probability=False):
     for i in loc:
         loc2 += [{'geo': i.decode("utf-8"), 'last': loc[i]['last'], 'time': loc[i]['time']}]
 
-    if mark:
+    if update_probability:
         for i in loc2:
-            locx = i['geo'].decode("utf-8")
+            locx = i['geo']
             locx = list(map(float, locx.split(',')))
             doc_ref = db.collection(u'HighRiskPlaces').document()
             doc_ref.set({
-                u'location': firebase_admin.firestore.GeoPoint(locx[0], locx[1])
+                u'location': firestore.GeoPoint(locx[0], locx[1])
             })
 
     return ({"devices": blth2, "location": loc2})
