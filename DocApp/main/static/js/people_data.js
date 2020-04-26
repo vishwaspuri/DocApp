@@ -16,11 +16,9 @@ function getPeopleInfo(){
             $('#example').DataTable( {
                 data: data,
                 columns: [
-                    { data: 'Name' },
-                    { data: 'Home' },
-                    { data: 'DateOfBirth' },
                     { data: 'Mobile' },
-                    { data: 'Email' }
+                    {data: 'Probability'},
+                    { data: 'ID' },
                 ]
             } );
 

@@ -4,7 +4,7 @@
 <head>
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="../static/css/login.css">
-	
+
 </head>
 <body>
 
@@ -14,14 +14,32 @@
 			<a href="#">DocApp</a>
 		</div>
 		<div>
-		  <form method="POST" onsubmit="return check();">
-		  	<h2>Enter your credentials</h2>
-		    <input type="text" id="email_id"  placeholder="Email ID" type="email">
-            <input type="text" id="username"  placeholder="Username">
-		    <input id="password"  placeholder="Password" type="password">
-            <span id='message'></span>
-		    <input type="submit" value="Login">
-		  </form>
+		  <form id="login-form" method="post"
+                  action="{% url 'login' %}">
+                {% csrf_token %}
+                <table class="table">
+                    <tr>
+                        <td><label for="id_username">Username</label></td>
+                        <td><input id="id_username" name="username"
+                                   type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="id_password">Password</label></td>
+                        <td><input id="id_password" name="password"
+                                   type="password" class="form-control"></td>
+                    </tr>
+                </table>
+                {% if form.errors %}
+                    <p class=" label label-danger">
+                        Your username and password didn't match.
+                        Please try again.
+                    </p>
+                {% endif %}
+
+                <input type="submit" value="Login"
+                       class="btn btn-primary pull-right" />
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
 		</div>
 
 
