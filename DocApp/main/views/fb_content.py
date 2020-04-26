@@ -169,7 +169,7 @@ def update_status(request, id):
     if profile.get() is None:
         return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
     getdata(id, True);
-    profile.update({"isPos": True})
+    profile.update({"isPos": True, "Probability":1})
     return Response(profile.get().to_dict(), status=status.HTTP_200_OK)
 
 
