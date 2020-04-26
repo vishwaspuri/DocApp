@@ -162,14 +162,13 @@ def get_profile(request, id):
         profile_dict.update({'flag':False})
         return Response(profile_dict,status=status.HTTP_200_OK)
 
-@api_view(["PUT", "POST"])
+@api_view(["GET"])
 def update_status(request, id):
     profile = store.collection(u"Profile").document(id)
 
     if profile.get() is None:
         return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
     getdata(id, True);
-    isPos = request.data["isPos"]
-    profile.update({"isPos": isPos})
+    profile.update({"isPos": True})
     return Response(profile.get().to_dict(), status=status.HTTP_200_OK)
 

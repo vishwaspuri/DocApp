@@ -106,9 +106,9 @@ function sendMarker(){
   var mobile = document.getElementById("search_input").value;
   // console.log("I'm in");
     var data = $.ajax( {
-        type: 'POST',     
+        type: 'GET',
         url: 'https://covihack.pythonanywhere.com/api/update_status/'+ mobile +'/',
-        data: {isPos:true},
+        // data: {isPos:true},
         success: function(data) {
           console.log("worked");
           // console.log(data);
