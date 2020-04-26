@@ -104,6 +104,7 @@ def getdata(phnumber, update_probability=False):
             locx = list(map(float, locx.split(',')))
             doc_ref = db.collection(u'HighRiskPlaces').document()
             doc_ref.set({
+                u'name': i['geo'],
                 u'location': firestore.GeoPoint(locx[0], locx[1])
             })
 
