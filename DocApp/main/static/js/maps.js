@@ -3,7 +3,7 @@ var map;
 var json;
 var json_clone;
 window.onload = function() {
-	var url = 	'https://covihack.pythonanywhere.com/api/highriskplaces';
+	var url = 	'https://covihack.pythonanywhere.com/api/providers/';
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
 		if ( this.readyState == 4 && this.status == 200 ) {

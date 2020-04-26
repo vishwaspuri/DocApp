@@ -18,7 +18,7 @@ store = firestore.client(app=fb_app)
 #Getdata function
 #-----------------
 db = firestore.client()
-def getdata(phnumber):
+def getdata(phnumber, update_probability=False):
     privatekey = db.collection(u'Profile').document(u'' + phnumber).get().to_dict()['PrivateKey']
     rsakey = RSA.importKey(base64.b64decode(privatekey))
     # rsakey =  PKCS1_OAEP.new(rsakey, hashAlgo=SHA256, mgfunc=lambda x,y: pss.MGF1(x,y, SHA256))
@@ -90,7 +90,8 @@ def getdata(phnumber):
 
             db.collection(u'Profile').document(u'' + i).collection(u'contact').document().set(data, merge=True)
 
-    update_prob(blth2)
+    if update_probability==True:
+        update_prob(blth2)
 
     ## to conver to list
     loc2 = []
@@ -161,14 +162,31 @@ def get_profile(request, id):
         profile_dict.update({'flag':False})
         return Response(profile_dict,status=status.HTTP_200_OK)
 
-@api_view(["PUT", "POST"])
+@api_view(["GET"])
 def update_status(request, id):
     profile = store.collection(u"Profile").document(id)
 
     if profile.get() is None:
         return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
-        
-    isPos = request.data["isPos"]
-    profile.update({"isPos": isPos})
+    getdata(id, True);
+    profile.update({"isPos": True})
     return Response(profile.get().to_dict(), status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+def get_providers(request):
+    providers = store.collection(u"Providers").get()
+    payload = []
+
+    for provider in providers:
+        data = provider.to_dict()
+        name = data['name']
+        location = data['location']
+        data_dict = {
+            "name": name,
+            "latitude": location.latitude,
+            "longitude": location.longitude,
+        }
+        payload.append(data_dict)
+    return Response(payload, status=status.HTTP_200_OK)
 

@@ -18,6 +18,7 @@ urlpatterns = [
     path('api/highriskplaces', fb_content.get_highriskplaces, name='get-highriskplaces'),
     path('api/profiles/', fb_content.get_all_profile, name='get-profiles'),
     path('api/profiles/<str:id>/', fb_content.get_profile, name='get-profile'),
+    path('api/providers/', fb_content.get_providers, name='get-prodivers'),
     path('api/update_status/<str:id>/', fb_content.update_status, name='update-status'),
 ]
 
