@@ -184,9 +184,9 @@ def get_providers(request):
         location = data['location']
         data_dict = {
             "name": name,
-            "latitude": location['latitude'],
-            "longitude": location['longitude'],
+            "latitude": location.latitude,
+            "longitude": location.longitude,
         }
-        payload.append(data)
+        payload.append(data_dict)
     return Response(payload, status=status.HTTP_200_OK)
 
