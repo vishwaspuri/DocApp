@@ -172,3 +172,21 @@ def update_status(request, id):
     profile.update({"isPos": True})
     return Response(profile.get().to_dict(), status=status.HTTP_200_OK)
 
+
+@api_view(["GET"])
+def get_providers(request):
+    providers = store.collection(u"Providers").get()
+    payload = []
+
+    for provider in providers:
+        data = provider.to_dict()
+        name = data['name']
+        location = data['location']
+        data_dict = {
+            "name": name,
+            "latitude": location['latitude'],
+            "longitude": location['longitude'],
+        }
+        payload.append(data)
+    return Response(payload, status=status.HTTP_200_OK)
+
