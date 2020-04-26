@@ -35,7 +35,7 @@ function getTrack(phno){
 
             // =================================turning the marked as infected button off==================
 
-            if(x.isPos == true){
+            if(x.isPos == true || x.isPos=="true"){
               $("#marker").addClass("disable_button");
               $("#marker").text("Infected");
               $("#marker").unbind();
@@ -108,7 +108,7 @@ function sendMarker(){
     var data = $.ajax( {
         type: 'POST',     
         url: 'https://covihack.pythonanywhere.com/api/update_status/'+ mobile +'/',
-        data: {ispos:true},
+        data: {isPos:true},
         success: function(data) {
           console.log("worked");
           console.log(data);
