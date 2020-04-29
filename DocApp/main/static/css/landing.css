@@ -25,8 +25,8 @@ body{
 }
 #grey_box{
     background-color:#e7ebed;
-    position: absolute;
-    top:12%;
+    /*position: absolute;
+    top:12%;*/
     height:50vh;
     width:100%;
 }
@@ -77,4 +77,31 @@ body{
     font-weight: 300;
     cursor: pointer;
   }
-  
+  .table_zone{
+    margin-left: 15vw;
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+  }
+  .table_zone h1{
+    color: #4B7FFB;
+    font-family: europa, sans-serif;
+    letter-spacing: 0px;
+  }
+  .level{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .level_item{
+    order: 1;
+    height: 10vh;
+    font-size: 22px;
+    font-weight: bold;
+  }
+ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
+    border-top: none !important;
+}
+table.dataTable.order-column tbody tr > .sorting_1, table.dataTable.order-column tbody tr > .sorting_2, table.dataTable.order-column tbody tr > .sorting_3, table.dataTable.display tbody tr > .sorting_1, table.dataTable.display tbody tr > .sorting_2, table.dataTable.display tbody tr > .sorting_3{
+    color: #15135B;
+}
