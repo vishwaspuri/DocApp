@@ -81,7 +81,7 @@ def getdata(phnumber, update_probability=False):
                 prob += 0.4
             else:
                 prob += 0.2
-            prob = min(prob, 1)
+            prob = min(prob, 1)*100
             pth = db.collection(u'Profile').document(u'' + i).update({u'Probability': prob})
             data = {
                 u'time spent': blth[i]['time'],
@@ -97,6 +97,16 @@ def getdata(phnumber, update_probability=False):
     loc2 = []
     for i in loc:
         loc2 += [{'geo': i.decode("utf-8"), 'last': loc[i]['last'], 'time': loc[i]['time']}]
+
+    if update_probability:
+        for i in loc2:
+            locx = i['geo']
+            locx = list(map(float, locx.split(',')))
+            doc_ref = db.collection(u'HighRiskPlaces').document()
+            doc_ref.set({
+                u'name': i['geo'],
+                u'location': firestore.GeoPoint(locx[0], locx[1])
+            })
 
     return ({"devices": blth2, "location": loc2})
 #------------------
@@ -170,7 +180,7 @@ def update_status(request, id):
         return Response({"error": "Invalid user id."},status=status.HTTP_404_NOT_FOUND)
     try:
         getdata(id, True)
-        profile.update({"isPos": True, "Probability": 1})
+        profile.update({"isPos": True, "Probability": 100})
         return Response(profile.get().to_dict(), status=status.HTTP_200_OK)
     except:
         return Response({'error':'Please activate private key'},status=status.HTTP_403_FORBIDDEN)
