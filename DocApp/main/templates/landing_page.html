@@ -2,6 +2,7 @@
 <head>
 <title>Covid-19 Doctor App</title>   
 <link rel="stylesheet" type="text/css" href="../static/css/landing.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 </head>
 <body >
   <div class="main_container">
@@ -20,8 +21,28 @@
     <div id="heading_name">
     CoviFight App
     </div></div>
+    <div class="table_zone">
+        <h1>CoViD Analytics(India)</h1>
+        <div class="level">
+            <div class="level_item" style="color: #131313;"><span id="cases_data"></span><br>Cases</div>
+            <div class="level_item" style="color: #EF0909;"><span id="death_data"></span><br>Deaths</div>
+            <div class="level_item" style="color: #328918;"><span id="rec_data"></span><br>Recovered</div>
+        </div>
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Active</th>
+                    <th>Confirmed</th>
+                    <th>Recovered</th>
+                    <th>Deaths</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
     </div>
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="../static/js/landing_page.js"></script>
+<script type="text/javascript" src="../static/js/table.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 </html>
