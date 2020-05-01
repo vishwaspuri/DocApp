@@ -69,6 +69,11 @@ body{
     font-size: 40px;
     font-weight: 600;
 }
+#heading_name ul li{
+    color: #15135B;
+    font-size: 20px;
+    line-height: 40px;
+}
 
 .button_nav {
     border: none;
