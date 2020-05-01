@@ -3,28 +3,29 @@
 <title>Covid-19 Doctor App</title>   
 <link rel="stylesheet" type="text/css" href="../static/css/landing.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-</head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script></head>
 <body >
-  <div class="main_container">
+<div class="main_container">
     <div id="nav" >
         <img id="icon-nav" src="../static/images/Group 29.png"> </img>
         <h1  id="heading-main">CoviFight</h1>
         <div class="items">
-        <ul><l1 class="list"><a>CoVID Analysis</a></li>
-        <l1 class="list"><a>CoviFight App</a></li>
-        <l1 class="list"><a>Contact us</a></li>
+        <ul><l1 ><a class="list" href="#Analysis">CoVID Analysis</a></li>
+        <l1 ><a class="list">CoviFight App</a></li>
+        <l1 ><a class="list">Contact us</a></li>
         </ul>
         <a href="../template/home.html"><button class="button_nav">For Medicos</button></a>
           </div>
     </div>
     <div id="grey_box">
+    <img src="../static/images/landing.png" id="display_pic"></img>
     <div id="heading_name">
     CoviFight App
     </div></div>
-    <div class="table_zone">
+    <div class="table_zone" id="Analysis">
         <h1>CoViD Analytics(India)</h1>
         <div class="level">
-            <div class="level_item" style="color: #131313;"><span id="cases_data"></span><br>Cases</div>
+            <div class="level_item" style="color: #131313; background-color:#e7ebed;"><span id="cases_data"></span><br>Cases</div>
             <div class="level_item" style="color: #EF0909;"><span id="death_data"></span><br>Deaths</div>
             <div class="level_item" style="color: #328918;"><span id="rec_data"></span><br>Recovered</div>
         </div>
@@ -39,10 +40,32 @@
                 </tr>
             </thead>
         </table>
-    </div>
-    </div>
+     </div>
+     <div id="maps_charts">
+      <div class="searchbox">
+              <form class="search-form" id="SearchForm">
+                <input type="text" id="search_input"  placeholder="Search " >      
+                <button type="button" value="Search" id="mybutton" onclick="getValue();">
+                  Search
+                </button>
+              </form>
+      </div>
+   <div id="grey_div_side">
+<div id="chart1">
+    <canvas id="myChart1"></canvas>
+</div>
+<div id="chart2">
+    <canvas id="myChart2"></canvas>
+</div>
+<div id="info">
+<p id="name"></p> 
+</div>
+  <div id="map-canvas"></div>
+</div>
+</div>
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="../static/js/table.js"></script>
+<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDASKMCnIeiR6sPy3-1D7oXigs9JHYqxRI&callback=initMap'></script>
+<script type="text/javascript" src="../static/js/landing.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 </html>
