@@ -24,8 +24,8 @@ def register(request):
     user.save()
     user.refresh_from_db()
     try:
-        user.profile.name = request.data['name']
         user.profile.is_admin = request.data['is_admin']
+        user.profile.is_provider = request.data['is_provider']
     except KeyError:
         return Response({'error':'Profile data is not provided'},status=status.HTTP_403_FORBIDDEN)
 
@@ -33,7 +33,7 @@ def register(request):
 
     token = get_jwt_with_user(user)
 
-    return Response({'token':token,'username':user.username,'email':user.email},status=status.HTTP_201_CREATED)
+    return Response({'token':token,'username':user.username,'email':user.email, 'is_provider':user.profile.is_provider},status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def login(request):
@@ -51,8 +51,4 @@ def login(request):
         return Response({'token':token},status=status.HTTP_200_OK)
     else:
         return Response({'error':'Invalid Login details supplied.'},status=status.HTTP_403_FORBIDDEN)
-
-
-
-
 
