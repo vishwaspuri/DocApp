@@ -20,5 +20,8 @@ urlpatterns = [
     path('api/profiles/<str:id>/', fb_content.get_profile, name='get-profile'),
     path('api/providers/', fb_content.get_providers, name='get-prodivers'),
     path('api/update_status/<str:id>/', fb_content.update_status, name='update-status'),
+    path('api/create_connection/', fb_content.create_connection, name='create-connection'),
+    path('api/user_connections/<str:id>', fb_content.user_connections, name='user-connections'),
+    path('api/useraffected_zones/<str:id>', fb_content.user_affected_zones, name='useraffected-zones')
 ]
 
