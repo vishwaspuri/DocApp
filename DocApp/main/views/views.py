@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from main.models import Profile
 
 class HomePage(TemplateView):
-    template_name = 'home.html'
+    template_name = 'landing_page.html'
 
 class Dashboard(LoginRequiredMixin,TemplateView):
     login_url = '/login/'
