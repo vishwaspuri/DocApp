@@ -1,5 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from main.models import Profile, Connection
 from rest_framework import status
 import base64
 from Crypto.PublicKey import RSA
@@ -7,6 +8,7 @@ from Cryptodome.Cipher import PKCS1_OAEP
 from Cryptodome.Hash import SHA512
 from firebase_admin import initialize_app, firestore, credentials
 import os
+
 # For this to work, make sure that environment variable GOOGLE_APPLICATION_CREDENTIALS is set properly. 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -185,8 +187,6 @@ def update_status(request, id):
     except:
         return Response({'error':'Please activate private key'},status=status.HTTP_403_FORBIDDEN)
 
-
-
 @api_view(["GET"])
 def get_providers(request):
     providers = store.collection(u"Providers").get()
@@ -204,3 +204,88 @@ def get_providers(request):
         payload.append(data_dict)
     return Response(payload, status=status.HTTP_200_OK)
 
+@api_view(["POST"])
+def create_connection(request):
+    try:
+        user_id = request.data["user_id"]
+        provider_id = request.data["provider_id"]
+    except:
+        return Response({'error': 'ID not provided correvtly'}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = Profile.objects.get(id=user_id)
+    provider = Profile.objects.get(id=provider_id)
+    
+    if(user == None or provider == None):
+        return Response({'error': 'User or Provider not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    print(user.is_provider)
+    print(provider.is_provider)
+    if(user.is_provider != False or provider.is_provider != True):
+        return Response({'error': 'Roles not satisfied'}, status=status.HTTP_400_BAD_REQUEST)
+
+    connection = Connection()
+    connection.user = user
+    connection.provider = provider
+
+    connection.save()
+
+    return Response(connection.to_dict(), status=status.HTTP_201_CREATED)
+    
+@api_view(["GET"])
+def user_connections(request, id):
+    
+    provider = Profile.objects.get(id = id)
+    
+    if(provider == None): 
+        return Response({"error": "provider not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+    if(provider.is_provider == False):
+        return Response({"error": "provider not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    payload = []
+
+    for connection in provider.connections.all():
+        payload.append(connection.to_dict())
+
+    return Response({"connections": payload}, status=status.HTTP_200_OK)
+
+@api_view(["GET"])
+def provider_connections(request, id):
+    
+    user = Profile.objects.get(id = id)
+
+    if(user == None):
+        return Response({"error": "user not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    if(user.is_provider == True):
+        return Response({"error": "user not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    payload = []
+
+    for connection in user.userconnections.all():
+        payload.append(connection.to_dict())
+
+    return Response({"connections": payload }, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(["GET"])
+def user_affected_zones(request, id):
+
+    user = Profile.objects.get(id = id)
+
+    if(user == None):
+        return Response({"error": "user not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    if(user.is_provider == True):
+        return Response({"error": "user not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    
+    payload = []
+
+    for connection in user.userconnections.select_related('provider'):
+        for connect in connection.provider.connections.all():
+            user_id = str(connect.user.id)
+
+            if(user_id != id):
+                payload.append({"id": user_id})
+
+    return Response({ "users":payload }, status=status.HTTP_200_OK )
