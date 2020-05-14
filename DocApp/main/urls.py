@@ -22,6 +22,7 @@ urlpatterns = [
     path('api/update_status/<str:id>/', fb_content.update_status, name='update-status'),
     path('api/create_connection/', fb_content.create_connection, name='create-connection'),
     path('api/user_connections/<str:id>', fb_content.user_connections, name='user-connections'),
-    path('api/useraffected_zones/<str:id>', fb_content.user_affected_zones, name='useraffected-zones')
+    path('api/useraffected_zones/<str:id>', fb_content.user_affected_zones, name='useraffected-zones'),
+    path('analysis/', views.AnalysisView.as_view(), name='analysis')
 ]
 
