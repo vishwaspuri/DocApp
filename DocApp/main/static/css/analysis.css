@@ -8,11 +8,11 @@
 }
 .notification_card_big{
 	width: 60vw;
-	height: 50vh;
+	/*height: 50vh;*/
 	padding-left: 5vw;
 	padding-right: 5vw;
 }
 .notification_card_big iframe{
-	height: 100%;
+	/*height: 100%;*/
 	width:100%;
 }
