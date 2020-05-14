@@ -1,0 +1,18 @@
+.bigi{
+	height: 90vh;
+	width: 50vw;
+	border: 1px solid black;
+}
+.notification_box{
+	width: auto !important;
+}
+.notification_card_big{
+	width: 60vw;
+	height: 50vh;
+	padding-left: 5vw;
+	padding-right: 5vw;
+}
+.notification_card_big iframe{
+	height: 100%;
+	width:100%;
+}
