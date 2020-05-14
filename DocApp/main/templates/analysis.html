@@ -1,0 +1,67 @@
+{% load static %}
+<html>
+<head>
+<title>Covid-19 Doctor App</title>   
+<!-- <link rel="stylesheet" type="text/css" href="../static/css/main.csss">  -->
+<link rel="stylesheet" type="text/css" href="../static/css/general.css">
+<link rel="stylesheet" type="text/css" href="../static/css/analysis.css">
+<link rel="stylesheet" type="text/css" href="../static/css/dashboard.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<body >
+  <div class="main_container">
+    <div id="nav" >
+        <img id="icon-nav" src="../static/images/Group 29.png"> </img>
+        <h1  id="heading-main">DocApp</h1>
+        <div class="profile">
+          <img class="profile-pic" src="../static/images/profile.png"></img>
+          <h3 id="name">{{ user.username }}</h3>
+          <h3 id="address"><a href="{% url 'logout' %}"> Logout</a></h3>
+          </div>
+    </div>
+    <div class="infobox" style="padding-top: 5vh;">
+      <!-- <div class="searchbox">
+        <h2 style="padding-top: 2vh;">Search</h2>
+              <form class="search-form" id="SearchForm">
+                <input type="text" id="search_input"  placeholder="Search " >      
+                <button type="button" value="Search" id="mybutton" onclick="getValue();">
+                  Search
+                </button>
+              </form>
+      </div> -->
+      <!-- <div class="heading_bar">
+        <div class="heading_child">Heading</div>
+        <div class="heading_child">Heading</div>
+      </div> -->
+      <div class="contentbox">
+        <div class="sidebar">
+        <div class="heading_child">Heading</div>
+          <ul>
+            <li><a href="#" >Dashboard</a></li>
+            <li><a href="{% url 'general_public' %}">People</a></li>
+            <li><a href="{% url 'hotspots' %}">Hotspots</a></li>
+            <li><a href="{% url 'maps' %}">Providers</a></li>
+            <li><a href="{% url 'analysis' %}">Analysis</a></li>
+          </ul>
+        </div>
+      <div class="workarea">
+          <div class="notification_box">
+            <div class="heading_child" style="margin-bottom: 2vh;">Trends and Analytics</div>
+<!-- duplicate this div container for using more illustrations -->
+            <div class="notification_card_big">
+              <!-- illustration to be added here adjust the height width of iframe as per requirement -->
+              <iframe src="https://covid.amcharts.com/us/"></iframe>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+</html>
