@@ -1,9 +1,10 @@
-
+// window.onload = alert(localStorage.getItem("storageName"));
 // get the value of number entered in the box
-function getValue(){
+window.onload = function getValue(){
 
   // console.log("in");
-  var str = document.getElementById("search_input").value;
+  var str = localStorage.getItem("storageName");
+  console.log(str);
   if(str != ""){
     getTrack(str);
   }
