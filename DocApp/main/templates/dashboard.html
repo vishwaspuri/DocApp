@@ -20,7 +20,7 @@
           </div>
     </div>
     <div class="infobox">
-      <div class="searchbox">
+      <div class="searchbox" style="display: none">
         <h2 style="padding-top: 2vh;">Search</h2>
               <form class="search-form" id="SearchForm">
                 <input type="text" id="search_input"  placeholder="Search " >      
@@ -33,15 +33,12 @@
         <div class="heading_child">Heading</div>
         <div class="heading_child">Heading</div>
       </div> -->
-      <div class="contentbox">
+      <div class="contentbox" style="margin-top: 5vh">
         <div class="sidebar">
         <div class="heading_child">Heading</div>
           <ul>
             <li><a href="#" >Dashboard</a></li>
-            <li><a href="{% url 'general_public' %}">People</a></li>
-            <li><a href="{% url 'hotspots' %}">Hotspots</a></li>
-            <li><a href="{% url 'maps' %}">Providers</a></li>
-            <li><a href="{% url 'analysis' %}">Analysis</a></li>
+            <li><a href="{% url 'general_public' %}" style="background-color: red !important; color: white">Back</a></li>
           </ul>
         </div>
       <div class="workarea">
