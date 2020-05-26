@@ -6,3 +6,5 @@ venv/
 .idea
 creds.json
 env/
+github_stats.py
+netbeans.csv

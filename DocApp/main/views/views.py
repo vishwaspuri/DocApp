@@ -25,5 +25,8 @@ class MapsView(LoginRequiredMixin,TemplateView):
     model=Profile
     template_name = 'maps.html'
 
-
+class AnalysisView(LoginRequiredMixin,TemplateView):
+    login_url = '/login/'
+    model=Profile
+    template_name = 'analysis.html'
 

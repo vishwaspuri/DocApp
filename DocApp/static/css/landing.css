@@ -1,0 +1,244 @@
+html{
+    scroll-behavior: smooth;
+}
+body{
+    overflow-x: hidden;
+    font-family: europa, sans-serif;
+    scroll-behavior: smooth;
+}
+#nav {
+    border: none;
+    background-color: white ;
+    height:10%;
+    width:100%;
+    z-index: 10;
+
+}
+#display_pic{
+    position: absolute;
+    top:11vh;
+    left:10vw;
+    height:50vh;
+    width:40vw;
+}
+#heading-main{
+    color: #15135e;
+    position: absolute;
+    font-size: 35px;
+    top: -10px;
+    left: 20vw;
+}
+#icon-nav{
+    height:7vh;
+    position: absolute;
+    left: 15vw;
+    top:10px;
+}
+#grey_box{
+    background-color:#e7ebed;
+    /*position: absolute;
+    top:12%;*/
+    height:50vh;
+    width:100%;
+}
+.footer_band{
+    margin-top: 20vh;
+    background-color: #e7ebed;
+    min-height: 40vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 5vh;
+}
+.footer_band h1{
+    color: #4B7FFB;
+    font-size: 25px;
+}
+.left_foot_box{
+    width: 30vw;
+}
+.right_foot_box{
+    width: 30vw;
+}
+#heading_name {
+    /*position: relative;
+    top:50px;
+    left:60%;*/
+    color: #4B7FFB;
+    font-size: 40px;
+    font-weight: 600;
+    float: right;
+    margin-top: 5vh;
+}
+#heading_name ul li{
+    color: #15135B;
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.button_nav {
+    border: none;
+    background-color: #4B7FFB;
+    border-radius: 20px;
+    height: 35px;
+    width: 150px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    top:-45px;
+    cursor: pointer;
+    left:32vw;
+}
+
+.items{
+    position: absolute;
+    left: 50%; 
+}
+
+.items ul {
+    list-style-type: none;
+    margin: 10px;
+    padding: 10px;
+    overflow: hidden;
+    
+}
+.list{
+    display: block;
+    color: #4B7FFB;
+    text-align: center;
+    display: inline;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+  }
+  .cont{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+  }
+  .table_zone{
+    margin-left: 5vw;
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+  }
+  .table_zone h1{
+    color: #4B7FFB;
+    font-family: europa, sans-serif;
+    letter-spacing: 0px;
+    margin-top: 10vh;
+    margin-bottom: 14vh;
+  }
+  .level{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .level_item{
+    order: 1;
+    height: 10vh;
+    width:8vw;
+    padding-top: 10px;
+    padding-left: 35px;
+    border-radius: 20px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
+    border-top: none !important;
+}
+table.dataTable.order-column tbody tr > .sorting_1, table.dataTable.order-column tbody tr > .sorting_2, table.dataTable.order-column tbody tr > .sorting_3, table.dataTable.display tbody tr > .sorting_1, table.dataTable.display tbody tr > .sorting_2, table.dataTable.display tbody tr > .sorting_3{
+    color: #15135B;
+}
+
+
+#maps_charts{
+    /*position:absolute;
+    top:70%;
+    *//*width:50vw;
+    margin-left: 38vw;
+*/}
+.searchbox{
+	height: 16vh;
+	width: 100%;
+    padding-left: 15vw;
+    position: relative;
+    top:10%;
+    margin-left: 0vw;
+}
+input[type=text] {
+    display: block;
+    margin-bottom: 9vh;
+    border: none;
+    background-color:#e7ebed;
+    border-radius: 20px;
+    font-size: 20px;
+    height: 40px;
+    width: 300px;
+    padding-left: 30px;
+    /*text-align: center;*/
+}
+button[type=button] {
+    border: none;
+    background-color: #4B7FFB;
+    border-radius: 20px;
+    height: 40px;
+    width: 200px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+#mybutton {
+    position: relative;
+    left: 25vw;
+    top: -15vh;
+    outline: none;
+}
+#chart1  {
+    width: 35vw;
+    height:40vh;
+    position: relative;
+    top:0vh;
+    left:2vw; 
+}
+#chart2  {
+    width: 35vw;
+    height:40vh;
+    position: relative;
+    top:5vh;
+    left:2vw; 
+}
+#map-canvas {
+	height: 60vh;
+	width: 75vh;
+    margin-left: 2vw;
+    margin-top: 10vh ;
+	z-index: 100;
+	padding: 0;
+  }
+  #grey_div_side{
+      /*position: relative;*/
+      /*top:3vh;*/
+      height: 160vh;
+      width:40vw;
+      background-color: #e7ebed;
+      margin-left: 10vw;
+      border-radius: 20px;
+      margin-top: 15vh;
+}
+#info{
+    position: relative;
+    top:5vh;
+    left:2vw;
+    display: inline;
+    color:#15135e;  
+}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    display: none;
+    }
